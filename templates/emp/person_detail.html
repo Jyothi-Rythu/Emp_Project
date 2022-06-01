@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Details</title>
+</head>
+<body>
+	<h1>{{person.name}}'s Tasks</h1>
+	<form method="post" action="">
+		{% csrf_token %}
+		{% for x in person.task_set.all %}
+			{% if x.is_complete == True %}
+				<input type="checkbox" value="clicked" name="t{{x.id}}" checked>{{x}}
+			{% else %}
+				<button type="submit" name="save" value="save"><input type="checkbox" value="clicked" name="t{{x.id}}"></button>{{x}}
+			{% endif %}
+			<button type="submit" name="save" value="save">SAVE CHANGES</button>
+			<button type="submit" name="delete_this" value={{x.id}}>DELETE</button><br>
+		{% endfor %}
+	</form>
+	<form method="post" action="">
+		{% csrf_token %}
+		<input type="textbox" name="new_item" placeholder="Enter Task...">
+		<button type="submit" name="add_item" value="add_item">Add Item</button>
+	</form>
+</body>
+</html>

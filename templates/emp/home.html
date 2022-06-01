@@ -1,0 +1,37 @@
+<DOCTYPE HTML>
+<html>
+<head>
+<title>
+Hello
+</Title>
+<style type="text/css">
+.listItem{
+font-style: Italic;
+font-weight: Bold;
+
+}
+</head>
+<body>
+
+{%if request.user.is authenticated %}
+<h1>{{request,user}}</h1>
+{%else %}
+<a href="{% url 'login'}">login</a>
+{%endif%}
+
+<h2> My List of Employees </h2>
+<button onclick="window.location.href='/personcreate'">AddEmplyees</button>
+<ul>
+{ % for person in person_list.person_set.all %}
+<li><h3 class="listItem"><a href="{% url,'persondetail' person.id %}">{{person.name}}</a><br></h3>
+<a href="{% url,'personupdate' person.id %}">edit</a>
+
+<button onclick="window.location.href='/person-delete/pk={{person.id}}'">delete</button>
+
+>/li>
+{% endfor %}
+</ul>
+<br>
+<button onclick="window.location.href='/logout'">Logout</button>
+</body>
+<html>

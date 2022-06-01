@@ -1,0 +1,26 @@
+! DOCTYPE HTML>
+<html>
+<head>
+<title>
+Sign in
+</Title>
+</head>
+<body>
+{% for message in messages %}
+<p style="color:green;">{{message}}</p>
+{% if message is success %}
+<p>
+True</p>
+{%else%}
+<p> False</p>
+{%end if%}
+{%end for%}
+<form method="post">
+{%csrf_token %}
+{% form.as_p %}
+
+<button type="submit" name="signinp">Signin</button>
+</form>
+<a href ={%url 'signup' %} create account here.</a>
+</body>
+</html>
